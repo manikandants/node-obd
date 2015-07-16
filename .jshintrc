@@ -1,0 +1,14 @@
+{
+	"predef" : [
+		"require",
+		"module",
+		"console",
+		"process",
+		"setInterval",
+		"clearInterval",
+		"setTimeout",
+		"describe",
+		"it",
+		"expect"
+	]
+}
