@@ -138,7 +138,7 @@ obd.encodeOBD = function(obdObject) {
 	return encodedObd;
 };
 
-obd.decodeOBD = function(obd) {
+obd.decodeOBDString = function(obd) {
 	var decodedObd = null;
 	var obdData;
 	if (typeof obd === 'string') {
@@ -160,14 +160,22 @@ obd.decodeOBD = function(obd) {
 				decodedObd = null;
 				break;
 		}
-	}else if (obd instanceof Array) {
-		decodedObd = {};
-		if (obd.length <= 0) {
+	}
+	return decodedObd;
+};
+
+obd.decodeOBD = function(encodedObd) {
+	var decodedObd = {};
+	var obdData;
+	if (typeof encodedObd === 'string') {
+		return obd.decodeOBDString(encodedObd);
+	}else if (encodedObd instanceof Array) {
+		if (encodedObd.length <= 0) {
 			return decodedObd;
 		} else {
-			for (var i = 0; i < obd.length; i += 1) {
-				obdData = obd[i].substring(4, obd[i].length);
-				switch (obd[i].substring(0, 4)) {
+			for (var i = 0; i < encodedObd.length; i += 1) {
+				obdData = encodedObd[i].substring(4, encodedObd[i].length);
+				switch (encodedObd[i].substring(0, 4)) {
 					case '410C':
 						decodedObd.load = decodeLoad(obdData);
 						break;
@@ -185,8 +193,6 @@ obd.decodeOBD = function(obd) {
 				}
 			}
 		}
-	}else {
-		decodedObd = {};
 	}
 	return decodedObd;
 };

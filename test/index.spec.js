@@ -168,6 +168,26 @@ describe('obd', function() {
 			expect(obd.encodeOBD(obdObject)).toEqual(obdArray);
 		});
 	});
+	describe('obd.decodeOBDString', function() {
+		it('should decode obd load', function() {
+			expect(obd.decodeOBDString('410C99')).toEqual(60);
+		});
+		it('should decode obd RPM', function() {
+			expect(obd.decodeOBDString('41040800')).toEqual(512);
+		});
+		it('should decode obd speed', function() {
+			expect(obd.decodeOBDString('410D80')).toEqual(128);
+		});
+		it('should decode obd MAF', function() {
+			expect(obd.decodeOBDString('411001F4')).toEqual(5);
+		});
+		it('should decode invalid obd', function() {
+			expect(obd.decodeOBDString('411101F4')).toEqual(null);
+		});
+		it('should decode invalid input', function() {
+			expect(obd.decodeOBDString({})).toEqual(null);
+		});
+	});
 	describe('obd.decodeOBD', function() {
 		it('should decode obd load', function() {
 			expect(obd.decodeOBD('410C99')).toEqual(60);
