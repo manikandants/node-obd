@@ -1,6 +1,6 @@
 {
 	"name": "obd",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "OBD encoder and decoder",
 	"main": "index.js",
 	"scripts": {
