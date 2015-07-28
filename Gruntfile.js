@@ -1,14 +1,14 @@
 module.exports = function(grunt) {
 	'use strict';
 	var src = {
-		js : ['Gruntfile.js', 'index.js'],
-		spec : ['test/']
+		js: ['Gruntfile.js', 'index.js'],
+		spec: ['test/']
 	};
 	grunt.initConfig({
-		jshint : {
+		jshint: {
 			all: src.js
 		},
-		jscs : {
+		jscs: {
 			all: src.js
 		},
 		/*jscs : disable*/
