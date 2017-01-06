@@ -164,35 +164,40 @@ obd.decodeOBDString = function(obd) {
 	return decodedObd;
 };
 
-obd.decodeOBD = function(encodedObd) {
-	var decodedObd = {};
-	var obdData;
-	if (typeof encodedObd === 'string') {
-		return obd.decodeOBDString(encodedObd);
-	}else if (encodedObd instanceof Array) {
-		if (encodedObd.length <= 0) {
-			return decodedObd;
-		} else {
-			for (var i = 0; i < encodedObd.length; i += 1) {
-				obdData = encodedObd[i].substring(4, encodedObd[i].length);
-				switch (encodedObd[i].substring(0, 4)) {
-					case '410C':
-						decodedObd.load = decodeLoad(obdData);
-						break;
-					case '4104':
-						decodedObd.rpm = decodeRPM(obdData);
-						break;
-					case '410D':
-						decodedObd.speed = decodeSpeed(obdData);
-						break;
-					case '4110':
-						decodedObd.maf = decodeMAF(obdData);
-						break;
-					default :
-						break;
-				}
+obd.decodeOBDArray = function(encodedObd) {
+	if (encodedObd.length <= 0) {
+		return {};
+	} else {
+		for (var i = 0; i < encodedObd.length; i += 1) {
+			obdData = encodedObd[i].substring(4, encodedObd[i].length);
+			switch (encodedObd[i].substring(0, 4)) {
+				case '410C':
+					decodedObd.load = decodeLoad(obdData);
+					break;
+				case '4104':
+					decodedObd.rpm = decodeRPM(obdData);
+					break;
+				case '410D':
+					decodedObd.speed = decodeSpeed(obdData);
+					break;
+				case '4110':
+					decodedObd.maf = decodeMAF(obdData);
+					break;
+				default :
+					break;
 			}
 		}
+		return decodedObd;
+	}
+};
+
+obd.decodeOBD = function(encodedObd) {
+	var decodedObd;
+	var obdData;
+	if (typeof encodedObd === 'string') {
+		decodedObd = obd.decodeOBDString(encodedObd);
+	} else if (encodedObd instanceof Array) {
+		decodedObd = obd.decodeOBDArray(encodedObd);
 	}
 	return decodedObd;
 };
