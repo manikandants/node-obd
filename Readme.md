@@ -11,6 +11,8 @@ OBD
 
 ## Installation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/manikandants/node-obd.svg)](https://greenkeeper.io/)
+
 ```bash
 $ npm install obd
 ```
