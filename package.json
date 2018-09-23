@@ -27,7 +27,7 @@
   "homepage": "https://github.com/manikandants/node-obd#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-jshint": "^2.0.0",
     "grunt-coveralls": "^1.0.1",
     "grunt-jasmine-node": "^0.3.1",
     "grunt-jasmine-node-coverage": "^1.1.1",
